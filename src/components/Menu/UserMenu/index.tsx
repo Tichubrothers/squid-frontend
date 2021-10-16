@@ -8,6 +8,8 @@ import {
   UserMenuDivider,
   UserMenuItem,
 } from '@pancakeswap/uikit'
+import styled from 'styled-components'
+import { WalletDialogButton } from '@solana/wallet-adapter-material-ui'
 import history from 'routerHistory'
 import useAuth from 'hooks/useAuth'
 import { useProfile } from 'state/profile/hooks'
@@ -20,6 +22,7 @@ import ProfileUserMenuItem from './ProfileUserMenutItem'
 import WalletUserMenuItem from './WalletUserMenuItem'
 
 const UserMenu = () => {
+  const ConnectButton = styled(WalletDialogButton)``
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { logout } = useAuth()
@@ -31,29 +34,30 @@ const UserMenu = () => {
   const avatarSrc = profile?.nft?.image?.thumbnail
   const hasLowBnbBalance = fetchStatus === FetchStatus.SUCCESS && balance.lte(LOW_BNB_BALANCE)
 
-  if (!account) {
-    return <ConnectWalletButton scale="sm" />
-  }
+  // if (!account) {
+  //   return <ConnectWalletButton scale="sm" />
+  // }
 
   return (
-    <UIKitUserMenu account={account} avatarSrc={avatarSrc}>
-      <WalletUserMenuItem hasLowBnbBalance={hasLowBnbBalance} onPresentWalletModal={onPresentWalletModal} />
-      <UserMenuItem as="button" onClick={onPresentTransactionModal}>
-        {t('Transactions')}
-      </UserMenuItem>
-      <UserMenuDivider />
-      <UserMenuItem as="button" onClick={() => history.push(`${nftsBaseUrl}/profile/${account.toLowerCase()}`)}>
-        {t('Your NFTs')}
-      </UserMenuItem>
-      <ProfileUserMenuItem isLoading={isLoading} hasProfile={hasProfile} />
-      <UserMenuDivider />
-      <UserMenuItem as="button" onClick={logout}>
-        <Flex alignItems="center" justifyContent="space-between" width="100%">
-          {t('Disconnect')}
-          <LogoutIcon />
-        </Flex>
-      </UserMenuItem>
-    </UIKitUserMenu>
+    <ConnectButton>Connect Wallet</ConnectButton>
+    // <UIKitUserMenu account={account} avatarSrc={avatarSrc}>
+    //   <WalletUserMenuItem hasLowBnbBalance={hasLowBnbBalance} onPresentWalletModal={onPresentWalletModal} />
+    //   <UserMenuItem as="button" onClick={onPresentTransactionModal}>
+    //     {t('Transactions')}
+    //   </UserMenuItem>
+    //   <UserMenuDivider />
+    //   <UserMenuItem as="button" onClick={() => history.push(`${nftsBaseUrl}/profile/${account.toLowerCase()}`)}>
+    //     {t('Your NFTs')}
+    //   </UserMenuItem>
+    //   <ProfileUserMenuItem isLoading={isLoading} hasProfile={hasProfile} />
+    //   <UserMenuDivider />
+    //   <UserMenuItem as="button" onClick={logout}>
+    //     <Flex alignItems="center" justifyContent="space-between" width="100%">
+    //       {t('Disconnect')}
+    //       <LogoutIcon />
+    //     </Flex>
+    //   </UserMenuItem>
+    // </UIKitUserMenu>
   )
 }
 

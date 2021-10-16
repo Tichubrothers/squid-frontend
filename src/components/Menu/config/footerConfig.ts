@@ -3,51 +3,61 @@ import { ContextApi } from 'contexts/Localization/types'
 
 export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
   {
-    label: t('About'),
+    label: t('Squid Game NFT'),
     items: [
       {
-        label: t('Contact'),
-        href: 'https://docs.pancakeswap.finance/contact-us',
-      },
-      {
-        label: t('Blog'),
-        href: 'https://pancakeswap.medium.com/',
-      },
-      {
-        label: t('Community'),
-        href: 'https://docs.pancakeswap.finance/contact-us/telegram',
-      },
-      {
-        label: t('CAKE token'),
-        href: 'https://docs.pancakeswap.finance/tokenomics/cake',
-      },
-      {
-        label: '—',
-      },
-      {
-        label: t('Online Store'),
-        href: 'https://pancakeswap.creator-spring.com/',
+        label:
+          '10,000 algorithmically generated, cute and collectible NFTs with proof of ownership stored on the Solana blockchain.',
         isHighlighted: true,
       },
     ],
   },
   {
-    label: t('Help'),
+    label: t('Resources'),
     items: [
       {
-        label: t('Customer Support'),
-        href: 'https://docs.pancakeswap.finance/contact-us/customer-support',
+        label: t('Roadmap'),
+        href: 'https://docs.pancakeswap.finance/contact-us',
       },
       {
-        label: t('Troubleshooting'),
-        href: 'https://docs.pancakeswap.finance/help/troubleshooting',
+        label: t('FAQ'),
+        href: 'https://pancakeswap.medium.com/',
       },
       {
-        label: t('Guides'),
-        href: 'https://docs.pancakeswap.finance/get-started',
+        label: t('Fusion'),
+        href: 'https://docs.pancakeswap.finance/contact-us/telegram',
       },
+      {
+        label: t('Rarity Ranking'),
+        href: 'https://docs.pancakeswap.finance/tokenomics/cake',
+      },
+      // {
+      //   label: '—',
+      // },
+      // {
+      //   label: t('Online Store'),
+      //   href: 'https://pancakeswap.creator-spring.com/',
+      //   isHighlighted: true,
+      // },
     ],
   },
+  // {
+  //   label: t('Help'),
+  //   items: [
+  //     {
+  //       label: t('Customer Support'),
+  //       href: 'https://docs.pancakeswap.finance/contact-us/customer-support',
+  //     },
+  //     {
+  //       label: t('Troubleshooting'),
+  //       href: 'https://docs.pancakeswap.finance/help/troubleshooting',
+  //     },
+  //     {
+  //       label: t('Guides'),
+  //       href: 'https://docs.pancakeswap.finance/get-started',
+  //     },
+  //   ],
+  // },
   {
     label: t('Developers'),
     items: [

@@ -13,7 +13,7 @@ import { DatePickerPortal } from 'components/DatePicker'
 import { nftsBaseUrl } from 'views/Nft/market/constants'
 
 // import HomeA from './views/HomeA'
-import './App.css'
+// import './App.css'
 import * as anchor from '@project-serum/anchor'
 import { clusterApiUrl } from '@solana/web3.js'
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base'
@@ -89,31 +89,6 @@ const connection = new anchor.web3.Connection(rpcHost)
 const startDateSeed = parseInt(process.env.REACT_APP_CANDY_START_DATE!, 10)
 
 const txTimeout = 30000 // milliseconds (confirm this works for your project)
-
-const theme = createTheme({
-  palette: {
-    type: 'dark',
-  },
-  overrides: {
-    MuiButtonBase: {
-      root: {
-        justifyContent: 'flex-start',
-      },
-    },
-    MuiButton: {
-      root: {
-        textTransform: undefined,
-        padding: '12px 16px',
-      },
-      startIcon: {
-        marginRight: 8,
-      },
-      endIcon: {
-        marginLeft: 8,
-      },
-    },
-  },
-})
 
 // This config is required for number formatting
 BigNumber.config({
