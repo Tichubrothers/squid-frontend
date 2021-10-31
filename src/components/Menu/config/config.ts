@@ -6,25 +6,26 @@ export type ConfigMenuItemsType = MenuItemsType & { hideSubNav?: boolean }
 
 const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
   {
-    label: t('Trade'),
+    label: t('Round 1'),
     icon: 'Swap',
     href: '/swap',
     showItemsOnMobile: false,
     items: [
-      // {
-      //   label: t('Exchange'),
-      //   href: '/swap',
-      // },
-      // {
-      //   label: t('Liquidity'),
-      //   href: '/liquidity',
-      // },
+      //   {
+      //     label: t('Exchange'),
+      //     href: '/swap',
+      //   },
+      //   {
+      //     label: t('Liquidity'),
+      //     href: '/liquidity',
+      //   },
     ],
   },
   {
-    label: t('Fusion'),
+    label: t('Roadmap'),
     href: '/farms',
     icon: 'Earn',
+    showItemsOnMobile: false,
     items: [
       // {
       //   label: t('Farms'),
@@ -36,22 +37,19 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
       // },
     ],
   },
-  {
-    label: t('Roadmap'),
-    href: '/farms',
-    icon: 'Earn',
-    items: [],
-  },
+
   {
     label: t('Rarity Ranking'),
     href: '/farms',
     icon: 'Earn',
+    showItemsOnMobile: false,
     items: [],
   },
   {
     label: t('FAQ'),
     href: '/farms',
     icon: 'Earn',
+    showItemsOnMobile: false,
     items: [],
   },
   // {

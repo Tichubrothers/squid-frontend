@@ -2,6 +2,7 @@ import React from 'react'
 import { useWeb3React } from '@web3-react/core'
 import {
   Flex,
+  Text,
   LogoutIcon,
   useModal,
   UserMenu as UIKitUserMenu,
@@ -12,14 +13,23 @@ import styled from 'styled-components'
 import { WalletDialogButton } from '@solana/wallet-adapter-material-ui'
 import history from 'routerHistory'
 import useAuth from 'hooks/useAuth'
+import { Button, CircularProgress, Snackbar } from '@material-ui/core'
 import { useProfile } from 'state/profile/hooks'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { FetchStatus, useGetBnbBalance } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
 import { nftsBaseUrl } from 'views/Nft/market/constants'
+import { useAnchorWallet } from '@solana/wallet-adapter-react'
 import WalletModal, { WalletView, LOW_BNB_BALANCE } from './WalletModal'
 import ProfileUserMenuItem from './ProfileUserMenutItem'
 import WalletUserMenuItem from './WalletUserMenuItem'
+import {
+  CandyMachine,
+  awaitTransactionSignatureConfirmation,
+  getCandyMachineState,
+  mintOneToken,
+  shortenAddress,
+} from '../../../views/HomeA/candy-machine'
 
 const UserMenu = () => {
   const ConnectButton = styled(WalletDialogButton)``
@@ -38,8 +48,16 @@ const UserMenu = () => {
   //   return <ConnectWalletButton scale="sm" />
   // }
 
+  const wallet = useAnchorWallet()
+
   return (
-    <ConnectButton>Connect Wallet</ConnectButton>
+    <>
+      {!wallet ? (
+        <ConnectButton>Connect Wallet</ConnectButton>
+      ) : (
+        <Text color="textSubtle">Address: {shortenAddress(wallet.publicKey.toBase58() || '')}</Text>
+      )}
+    </>
     // <UIKitUserMenu account={account} avatarSrc={avatarSrc}>
     //   <WalletUserMenuItem hasLowBnbBalance={hasLowBnbBalance} onPresentWalletModal={onPresentWalletModal} />
     //   <UserMenuItem as="button" onClick={onPresentTransactionModal}>
