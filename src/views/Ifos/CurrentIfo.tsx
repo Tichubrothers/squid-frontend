@@ -12,17 +12,17 @@ import IfoQuestions from './components/IfoQuestions'
  */
 const activeIfo = ifosConfig.find((ifo) => ifo.isActive)
 
-const Ifo = () => {
+const RoadmapSection = () => {
   const publicIfoData = useGetPublicIfoV2Data(activeIfo)
   const walletIfoData = useGetWalletIfoV2Data(activeIfo)
 
   return (
     <IfoLayout id="current-ifo">
-      <IfoFoldableCard ifo={activeIfo} publicIfoData={publicIfoData} walletIfoData={walletIfoData} isInitiallyVisible />
+      {/* <IfoFoldableCard ifo={activeIfo} publicIfoData={publicIfoData} walletIfoData={walletIfoData} isInitiallyVisible /> */}
       <IfoSteps ifo={activeIfo} walletIfoData={walletIfoData} />
-      <IfoQuestions />
+      {/* <IfoQuestions /> */}
     </IfoLayout>
   )
 }
 
-export default Ifo
+export default RoadmapSection

@@ -1,5 +1,15 @@
 import React, { useEffect } from 'react'
-import { Heading, Flex, Text, Skeleton, ChartIcon, CommunityIcon, SwapIcon } from '@pancakeswap/uikit'
+import {
+  Heading,
+  Flex,
+  Text,
+  Skeleton,
+  ChartIcon,
+  CommunityIcon,
+  NftIcon,
+  SwapIcon,
+  WaitIcon,
+} from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useGetStats } from 'hooks/api'
 import useTheme from 'hooks/useTheme'
@@ -7,7 +17,7 @@ import styled, { keyframes } from 'styled-components'
 import { formatLocalisedCompactNumber } from 'utils/formatBalance'
 import IconCard, { IconCardData } from '../IconCard'
 import StatCardContent from './StatCardContent'
-import GradientLogo from '../GradientLogoSvg'
+// import GradientLogo from '../GradientLogoSvg'
 import './rowstyles.css'
 
 // Values fetched from bitQuery effective 6/9/21
@@ -16,7 +26,7 @@ const addressCount = 2751624
 
 const DalgonaImgRow = styled.img``
 
-const Stats = () => {
+const RoundOne = () => {
   const { t } = useTranslation()
   const data = useGetStats()
   const { theme } = useTheme()
@@ -29,7 +39,7 @@ const Stats = () => {
   const [entrusting, inFunds] = tvlText.split(tvlString)
 
   const UsersCardData: IconCardData = {
-    icon: <CommunityIcon color="secondary" width="36px" />,
+    icon: <NftIcon color="secondary" width="36px" />,
   }
 
   const TradesCardData: IconCardData = {
@@ -37,7 +47,7 @@ const Stats = () => {
   }
 
   const StakedCardData: IconCardData = {
-    icon: <ChartIcon color="failure" width="36px" />,
+    icon: <WaitIcon color="failure" width="36px" />,
   }
 
   useEffect(() => {
@@ -49,10 +59,10 @@ const Stats = () => {
     for (let i = 0; i < marqueeElementsDisplayed; i++) {
       marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true))
     }
-  })
+  }, [])
 
   return (
-    <Flex justifyContent="center" alignItems="center" flexDirection="column">
+    <Flex justifyContent="center" alignItems="center" flexDirection="column" mt="50px">
       {/* <GradientLogo height="48px" width="48px" mb="24px" /> */}
       <Heading textAlign="center" color="#E93E7D" scale="xl">
         {t('ROUND 1 - Dalgona')}
@@ -60,16 +70,16 @@ const Stats = () => {
       {/* <Heading textAlign="center" scale="xl" mb="32px">
         {t('Trusted with billions.')}
       </Heading> */}
-      <Text textAlign="center" color="textSubtle">
-        {t('PancakeSwap has the most users of any decentralized platform, ever.')}
+      <Text textAlign="center" color="textSubtle" mb="20px">
+        {t('Mint at least one NFT to accept your inviation to the game.')}
       </Text>
-      <Flex flexWrap="wrap">
+      {/* <Flex flexWrap="wrap">
         <Text display="inline" textAlign="center" color="textSubtle" mb="20px">
           {entrusting}
           <>{data ? <>{tvlString}</> : <Skeleton display="inline-block" height={16} width={70} mt="2px" />}</>
           {inFunds}
         </Text>
-      </Flex>
+      </Flex> */}
 
       <Text textAlign="center" color="textSubtle" bold mb="32px">
         {t('Will you join?')}
@@ -81,7 +91,7 @@ const Stats = () => {
             <DalgonaImgRow src="/images/pixel/carousel/Artboard 1.png" alt="Dalgona samples" />
           </li>
           <li>
-            <DalgonaImgRow src="/images/pixel/carousel/Artboard 2.png" alt="Dalgona samples" />
+            <DalgonaImgRow src="/images/pixel/carousel/Artboard 5.png" alt="Dalgona samples" />
           </li>
           <li>
             <DalgonaImgRow src="/images/pixel/carousel/Artboard 3.png" alt="Dalgona samples" />
@@ -90,13 +100,13 @@ const Stats = () => {
             <DalgonaImgRow src="/images/pixel/carousel/Artboard 4.png" alt="Dalgona samples" />
           </li>
           <li>
-            <DalgonaImgRow src="/images/pixel/carousel/Artboard 5.png" alt="Dalgona samples" />
-          </li>
-          <li>
             <DalgonaImgRow src="/images/pixel/carousel/Artboard 6.png" alt="Dalgona samples" />
           </li>
           <li>
             <DalgonaImgRow src="/images/pixel/carousel/Artboard 7.png" alt="Dalgona samples" />
+          </li>
+          <li>
+            <DalgonaImgRow src="/images/pixel/carousel/Artboard 2.png" alt="Dalgona samples" />
           </li>
         </ul>
       </div>
@@ -118,7 +128,7 @@ const Stats = () => {
         </IconCard>
         <IconCard {...StakedCardData}>
           <StatCardContent
-            headingText={t('Release date 19-Nov-2021', { tvl: tvlString })}
+            headingText={t('Release date Nov-26-2021', { tvl: tvlString })}
             bodyText={t('at 1:00pm UTC')}
             highlightColor={theme.colors.failure}
           />
@@ -128,4 +138,4 @@ const Stats = () => {
   )
 }
 
-export default Stats
+export default RoundOne

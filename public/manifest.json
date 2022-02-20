@@ -1,16 +1,16 @@
 {
-  "short_name": "PancakeSwap",
-  "name": "PancakeSwap",
-  "description": "Farm CAKE with Pancake LP Tokens",
-  "homepage_url": "https://pancakeswap.finance",
+  "short_name": "Squid NFT Game",
+  "name": "Squid NFT Game",
+  "description": "Survive for SOL. Play-to-Earn Squid NFT Game in the Solana Metaverse",
+  "homepage_url": "https://squidnftgame.io",
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#1FC7D4",
+  "theme_color": "#e93e7d",
   "background_color": "#ffffff",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "logo.png",
       "type": "image/x-icon",
       "sizes": "256x256"
     },

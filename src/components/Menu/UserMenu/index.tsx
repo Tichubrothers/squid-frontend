@@ -8,21 +8,25 @@ import {
   UserMenu as UIKitUserMenu,
   UserMenuDivider,
   UserMenuItem,
+  CommunityIcon,
+  RedditIcon,
+  Button,
+  TwitterIcon,
 } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { WalletDialogButton } from '@solana/wallet-adapter-material-ui'
-import history from 'routerHistory'
+// import history from 'routerHistory'
 import useAuth from 'hooks/useAuth'
-import { Button, CircularProgress, Snackbar } from '@material-ui/core'
+// import { Button, CircularProgress, Snackbar } from '@material-ui/core'
 import { useProfile } from 'state/profile/hooks'
-import ConnectWalletButton from 'components/ConnectWalletButton'
+// import ConnectWalletButton from 'components/ConnectWalletButton'
 import { FetchStatus, useGetBnbBalance } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
-import { nftsBaseUrl } from 'views/Nft/market/constants'
+// import { nftsBaseUrl } from 'views/Nft/market/constants'
 import { useAnchorWallet } from '@solana/wallet-adapter-react'
 import WalletModal, { WalletView, LOW_BNB_BALANCE } from './WalletModal'
-import ProfileUserMenuItem from './ProfileUserMenutItem'
-import WalletUserMenuItem from './WalletUserMenuItem'
+// import ProfileUserMenuItem from './ProfileUserMenutItem'
+// import WalletUserMenuItem from './WalletUserMenuItem'
 import {
   CandyMachine,
   awaitTransactionSignatureConfirmation,
@@ -32,7 +36,9 @@ import {
 } from '../../../views/HomeA/candy-machine'
 
 const UserMenu = () => {
-  const ConnectButton = styled(WalletDialogButton)``
+  const ConnectButton = styled(WalletDialogButton)`
+    max-height: 48px;
+  `
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { logout } = useAuth()
@@ -52,6 +58,26 @@ const UserMenu = () => {
 
   return (
     <>
+      <Button
+        variant="text"
+        width="20px"
+        scale="sm"
+        marginRight="15px"
+        onClick={() => window.open('https://twitter.com/SquidNFTGame0', '_blank')}
+      >
+        <TwitterIcon fillColor="#b8add1" width="25px" />
+      </Button>
+
+      <Button
+        variant="text"
+        width="20px"
+        scale="sm"
+        marginRight="20px"
+        onClick={() => window.open('https://discord.com/invite/2YZjkAHv64', '_blank')}
+      >
+        <RedditIcon color="#b8add1" width="24px" />
+      </Button>
+
       {!wallet ? (
         <ConnectButton>Connect Wallet</ConnectButton>
       ) : (

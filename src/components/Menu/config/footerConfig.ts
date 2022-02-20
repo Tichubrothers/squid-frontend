@@ -3,11 +3,11 @@ import { ContextApi } from 'contexts/Localization/types'
 
 export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
   {
-    label: t('Squid Game NFT'),
+    label: t('Squid NFT Game'),
     items: [
       {
         label:
-          '10,000 algorithmically generated, cute and collectible NFTs with proof of ownership stored on the Solana blockchain.',
+          'NFT based survival game in the Solana metaverse emulating the popular Netflix series. Follow the rules and survive all 6 rounds to claim the ultimate prize!',
         isHighlighted: true,
       },
     ],
@@ -16,20 +16,24 @@ export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
     label: t('Resources'),
     items: [
       {
+        label: t('Home'),
+        href: '/',
+      },
+      {
+        label: t('Rules'),
+        href: '/#rules',
+      },
+      {
         label: t('Roadmap'),
-        href: 'https://docs.pancakeswap.finance/contact-us',
-      },
-      {
-        label: t('FAQ'),
-        href: 'https://pancakeswap.medium.com/',
-      },
-      {
-        label: t('Fusion'),
-        href: 'https://docs.pancakeswap.finance/contact-us/telegram',
+        href: '/#roadmap',
       },
       {
         label: t('Rarity Ranking'),
-        href: 'https://docs.pancakeswap.finance/tokenomics/cake',
+        href: '/rarityranking',
+      },
+      {
+        label: t('FAQ'),
+        href: '/#faq',
       },
       // {
       //   label: '—',
@@ -58,29 +62,29 @@ export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
   //     },
   //   ],
   // },
-  {
-    label: t('Developers'),
-    items: [
-      {
-        label: 'Github',
-        href: 'https://github.com/pancakeswap',
-      },
-      {
-        label: t('Documentation'),
-        href: 'https://docs.pancakeswap.finance',
-      },
-      {
-        label: t('Bug Bounty'),
-        href: 'https://app.gitbook.com/@pancakeswap-1/s/pancakeswap/code/bug-bounty',
-      },
-      {
-        label: t('Audits'),
-        href: 'https://docs.pancakeswap.finance/help/faq#is-pancakeswap-safe-has-pancakeswap-been-audited',
-      },
-      {
-        label: t('Careers'),
-        href: 'https://docs.pancakeswap.finance/hiring/become-a-chef',
-      },
-    ],
-  },
+  // {
+  //   label: t('Developers'),
+  //   items: [
+  //     {
+  //       label: 'Github',
+  //       href: 'https://github.com/pancakeswap',
+  //     },
+  //     {
+  //       label: t('Documentation'),
+  //       href: 'https://docs.pancakeswap.finance',
+  //     },
+  //     {
+  //       label: t('Bug Bounty'),
+  //       href: 'https://app.gitbook.com/@pancakeswap-1/s/pancakeswap/code/bug-bounty',
+  //     },
+  //     {
+  //       label: t('Audits'),
+  //       href: 'https://docs.pancakeswap.finance/help/faq#is-pancakeswap-safe-has-pancakeswap-been-audited',
+  //     },
+  //     {
+  //       label: t('Careers'),
+  //       href: 'https://docs.pancakeswap.finance/hiring/become-a-chef',
+  //     },
+  //   ],
+  // },
 ]

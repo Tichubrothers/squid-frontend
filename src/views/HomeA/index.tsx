@@ -1,8 +1,8 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable @typescript-eslint/no-shadow */
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useCallback, useEffect, useState } from 'react'
+import { Link, useLocation, Route, useHistory } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import { Heading, Flex, Text, Skeleton, ChartIcon, CommunityIcon, SwapIcon, Button } from '@pancakeswap/uikit'
 import PageSection from 'components/PageSection'
@@ -18,18 +18,22 @@ import { WalletDialogButton } from '@solana/wallet-adapter-material-ui'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import Container from 'components/Layout/Container'
-import { PageMeta } from 'components/Layout/Page'
-import Hero from './components/Hero'
-import { swapSectionData, earnSectionData, cakeSectionData } from './components/SalesSection/data'
-import MetricsSection from './components/MetricsSection'
-import SalesSection from './components/SalesSection'
-import WinSection from './components/WinSection'
-import FarmsPoolsRow from './components/FarmsPoolsRow'
-import Footer from './components/Footer'
-import CakeDataRow from './components/CakeDataRow'
-import { WedgeTopLeft, InnerWedgeWrapper, OuterWedgeWrapper, WedgeTopRight } from './components/WedgeSvgs'
-import UserBanner from './components/UserBanner'
-import PancakeSquadBanner from './components/Banners/PancakeSquadBanner'
+// import { PageMeta } from 'components/Layout/Page'
+// import Hero from './components/Hero'
+// import { swapSectionData, earnSectionData, cakeSectionData } from './components/SalesSection/data'
+import RoundOneSection from './components/RoundOneSection'
+import RulesSection from './components/RulesSection'
+import Ifo from '../Ifos/CurrentIfo'
+import IfoQuestions from '../Ifos/components/IfoQuestions'
+import IfoLayout from '../Ifos/components/IfoLayout'
+// import SalesSection from './components/SalesSection'
+// import WinSection from './components/WinSection'
+// import FarmsPoolsRow from './components/FarmsPoolsRow'
+// import Footer from './components/Footer'
+// import CakeDataRow from './components/CakeDataRow'
+// import { WedgeTopLeft, InnerWedgeWrapper, OuterWedgeWrapper, WedgeTopRight } from './components/WedgeSvgs'
+// import UserBanner from './components/UserBanner'
+// import PancakeSquadBanner from './components/Banners/PancakeSquadBanner'
 
 import { SlideSvgDark, SlideSvgLight } from './components/SlideSvg'
 import CompositeImage, { getSrcSet, CompositeImageProps } from './components/CompositeImage'
@@ -148,7 +152,9 @@ const ConnectButton = styled(WalletDialogButton)``
 
 const CounterText = styled.span`` // add your styles here
 
-const MintContainer = styled.div`` // add your styles here
+const MintContainer = styled.div`
+  margin-top: 10px;
+` // add your styles here
 
 const MintButton = styled(Button)`
   background-color: #e93e7d;
@@ -164,13 +170,14 @@ export interface HomeProps {
   txTimeout: number
 }
 
-const Home = (props: HomeProps) => {
+const HomeA = (props: HomeProps) => {
   const { theme } = useTheme()
   const { account } = useWeb3React()
   const { t } = useTranslation()
 
   const HomeSectionContainerStyles = { margin: '0', width: '100%', maxWidth: '968px' }
 
+  const [showRound, setShowRound] = useState(true)
   const [balance, setBalance] = useState<number>()
   const [isActive, setIsActive] = useState(false) // true when countdown completes
   const [isSoldOut, setIsSoldOut] = useState(false) // true when items remaining is zero
@@ -184,7 +191,9 @@ const Home = (props: HomeProps) => {
 
   // eslint-disable-next-line react/destructuring-assignment
   const [startDate, setStartDate] = useState(new Date(props.startDate))
+  const customDate = new Date('2021-11-26T13:00:00Z')
 
+  const history = useHistory()
   const wallet = useAnchorWallet()
   const [candyMachine, setCandyMachine] = useState<CandyMachine>()
   const [itemsRemaining, setItemsRemaining] = useState(0)
@@ -283,6 +292,33 @@ const Home = (props: HomeProps) => {
     })()
   }, [wallet, props.candyMachineId, props.connection])
 
+  useEffect(() => {
+    const { hash } = window.location
+    if (hash !== '') {
+      const id = hash.replace('', '')
+      const element = document.getElementById(id)
+      if (element)
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest',
+        })
+    }
+    return history.listen((location) => {
+      const { hash } = window.location
+      if (hash !== '') {
+        const id = hash.replace('', '')
+        const element = document.getElementById(id)
+        if (element)
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest',
+          })
+      }
+    })
+  }, [history])
+
   return (
     <>
       <PageSection
@@ -294,7 +330,7 @@ const Home = (props: HomeProps) => {
         }
         // height="800px"
         index={2}
-        hasCurvedDivider={false}
+        // hasCurvedDivider={false}
       >
         <BgWrapper>
           <InnerWrapper>{theme.isDark ? <SlideSvgDark width="100%" /> : <SlideSvgLight width="100%" />}</InnerWrapper>
@@ -309,31 +345,49 @@ const Home = (props: HomeProps) => {
         >
           <Flex flex="1" flexDirection="column">
             <Heading scale="xxl" color="#E93E7D" mb="24px">
-              {t('AN INVITATION TO PLAY.')}
+              {/* {t('Would you like to play a game?')} */}
+              {/* {t('AN INVITATION TO PLAY')} */}
+              {t('YOUR INVITATION AWAITS')}
             </Heading>
             <Heading scale="md" mb="24px">
               {t(
-                '10,000 uniquely generated, cute and collectible pixel art souls with proof of ownership stored on the Solana blockchain.',
+                'Welcome to Squid NFT Game, a Play-to-Earn NFT game in the Solana metaverse emulating the popular Netflix series.',
               )}
             </Heading>
-            {/* {wallet && <Text color="textSubtle">Balance: {(balance || 0).toLocaleString()} SOL</Text>} */}
-            <Text color="textSubtle">
-              Items available: {itemsRemaining} / {itemsAvailable}
+            <Text mb="60px" color="gold">
+              {t('Follow the rules and survive all 6 rounds to claim the ultimate prize of potentially 420 SOL!')}
             </Text>
+            {/* {wallet && <Text color="textSubtle">Balance: {(balance || 0).toLocaleString()} SOL</Text>} */}
+            {/* <Text color="textSubtle">
+              Items available: {itemsRemaining} / {itemsAvailable}
+            </Text> */}
+            {/* <Text color="textSubtle">ROUND 1 begins in:</Text> */}
+            <Text color="primary" bold>
+              ROUND 1 Dalgona NFT available to mint!
+            </Text>
+            {/* <Countdown
+              date={customDate}
+              // onMount={({ completed }) => completed && setIsActive(true)}
+              // onComplete={() => setIsActive(true)}
+              renderer={renderCounter}
+            /> */}
             <MintContainer>
               {!wallet ? (
                 <ConnectButton>Connect Wallet</ConnectButton>
               ) : (
+                // <MintButton disabled variant="contained">
+                //   <Text textAlign="center">Mint not yet available</Text>
+                // </MintButton>
                 <MintButton disabled={isSoldOut || isMinting || !isActive} onClick={onMint} variant="contained">
                   {isSoldOut ? (
                     <Text textAlign="center" color="textSubtle">
-                      SOLD OUT
+                      CIRCUIT BREAKER
                     </Text>
                   ) : isActive ? (
                     isMinting ? (
                       <CircularProgress />
                     ) : (
-                      <Text textAlign="center">MINT</Text>
+                      <Text textAlign="center">Mint NFT</Text>
                     )
                   ) : (
                     <Countdown
@@ -379,49 +433,103 @@ const Home = (props: HomeProps) => {
           </Alert>
         </Snackbar>
       </PageSection>
-
+      <div id="#round1">
+        <PageSection
+          innerProps={{ style: { margin: '0', width: '100%' } }}
+          background={
+            theme.isDark
+              ? // 'radial-gradient(103.12% 50% at 50% 50%, #3a1935 0%, #261323 100%)'
+                'linear-gradient(180deg, #09070C 22%, #261323 100%)'
+              : 'linear-gradient(180deg, #FFFFFF 22%, #D7CAEC 100%)'
+          }
+          index={2}
+          hasCurvedDivider={false}
+          mt="100px"
+        >
+          <RoundOneSection />
+          <Flex justifyContent="center" mt="10px">
+            <MintContainer>
+              {!wallet ? (
+                <ConnectButton>Connect Wallet</ConnectButton>
+              ) : (
+                // <MintButton disabled variant="contained">
+                //   <Text textAlign="center">Mint not yet available</Text>
+                // </MintButton>
+                <MintButton disabled={isSoldOut || isMinting || !isActive} onClick={onMint} variant="contained">
+                  {isSoldOut ? (
+                    <Text textAlign="center" color="textSubtle">
+                      CIRCUIT BREAKER
+                    </Text>
+                  ) : isActive ? (
+                    isMinting ? (
+                      <CircularProgress />
+                    ) : (
+                      <Text textAlign="center">Mint NFT</Text>
+                    )
+                  ) : (
+                    <Countdown
+                      date={startDate}
+                      onMount={({ completed }) => completed && setIsActive(true)}
+                      onComplete={() => setIsActive(true)}
+                      renderer={renderCounter}
+                    />
+                  )}
+                </MintButton>
+              )}
+            </MintContainer>
+          </Flex>
+        </PageSection>
+      </div>
       <PageSection
         innerProps={{ style: { margin: '0', width: '100%' } }}
         background={
           theme.isDark
-            ? 'linear-gradient(180deg, #09070C 22%, #201335 100%)'
+            ? 'linear-gradient(180deg, #261323 22%, #09070C 100%)'
             : 'linear-gradient(180deg, #FFFFFF 22%, #D7CAEC 100%)'
         }
         index={2}
         hasCurvedDivider={false}
       >
-        <MetricsSection />
-        <Flex justifyContent="center">
-          <MintContainer>
-            {!wallet ? (
-              <Text textAlign="center" mt="24px" color="textSubtle">
-                Connect wallet to mint.
-              </Text>
-            ) : (
-              <MintButton disabled={isSoldOut || isMinting || !isActive} onClick={onMint} variant="contained">
-                {isSoldOut ? (
-                  <Text textAlign="center" color="textSubtle">
-                    SOLD OUT
-                  </Text>
-                ) : isActive ? (
-                  isMinting ? (
-                    <CircularProgress />
-                  ) : (
-                    <Text textAlign="center">MINT</Text>
-                  )
-                ) : (
-                  <Countdown
-                    date={startDate}
-                    onMount={({ completed }) => completed && setIsActive(true)}
-                    onComplete={() => setIsActive(true)}
-                    renderer={renderCounter}
-                  />
-                )}
-              </MintButton>
-            )}
-          </MintContainer>
+        <Flex justifyContent="center" mt="120px">
+          <div id="#rules">
+            <RulesSection />
+          </div>
         </Flex>
       </PageSection>
+      <PageSection
+        innerProps={{ style: { margin: '0', width: '100%' } }}
+        background={
+          theme.isDark
+            ? 'linear-gradient(180deg, #09070C 22%, #261323 100%)'
+            : 'linear-gradient(180deg, #FFFFFF 22%, #D7CAEC 100%)'
+        }
+        index={2}
+        hasCurvedDivider={false}
+      >
+        <Flex mt="120px">
+          <div id="#roadmap">
+            <Ifo />
+          </div>
+        </Flex>
+      </PageSection>
+      <div id="#faq">
+        <PageSection
+          innerProps={{ style: { margin: '0', width: '100%' } }}
+          background={
+            theme.isDark
+              ? 'linear-gradient(180deg, #261323 22%, #09070C 100%)'
+              : 'linear-gradient(180deg, #FFFFFF 22%, #D7CAEC 100%)'
+          }
+          index={2}
+          hasCurvedDivider={false}
+        >
+          <Flex mt="120px" mb="50px">
+            <IfoLayout id="current-ifo">
+              <IfoQuestions />
+            </IfoLayout>
+          </Flex>
+        </PageSection>
+      </div>
     </>
   )
 }
@@ -434,10 +542,12 @@ interface AlertState {
 
 const renderCounter = ({ days, hours, minutes, seconds, completed }: any) => {
   return (
-    <CounterText>
-      {hours} hours, {minutes} minutes, {seconds} seconds
-    </CounterText>
+    <Text color="primary" bold>
+      <CounterText>
+        {days} days, {hours} hours, {minutes} minutes, {seconds} seconds
+      </CounterText>
+    </Text>
   )
 }
 
-export default Home
+export default HomeA

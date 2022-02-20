@@ -1,37 +1,34 @@
 const config = [
   {
-    title: 'What’s the difference between a Basic Sale and Unlimited Sale?',
+    title: 'What is the ultimate prize?',
     description: [
-      'In the Basic Sale, every user can commit a maximum of about 100 USD worth of CAKE-BNB LP Tokens. We calculate the maximum LP amount about 30 minutes before each IFO. The Basic Sale has no participation fee.',
-      'In the Unlimited Sale, there’s no limit to the amount of CAKE-BNB LP Tokens you can commit. However, there’s a fee for participation: see below.',
+      'The ultimate prize will be announced after Round 2 is complete.',
+      'Based on the number of participants joined, a portion of the SOL earnings from Round 1 & 2 will then be allocated as the ultimate prize.',
+      'Note, if 100% of mints are successfully sold in Round 2 the ultimate prize will be 420 SOL, otherwise if say 50% of mints are sold then the ultimate prize will be 210 SOL, etc.',
     ],
   },
   {
-    title: 'Which sale should I commit to? Can I do both?',
+    title: 'How do I win the ultimate prize?',
+    description: ['Refer to the RULES section above.'],
+  },
+  {
+    title: 'How much is a Squid NFT Game NFT?',
+    description: ['Squid NFT Game NFTs will be minted for 0.8 SOL apiece.'],
+  },
+  {
+    title: 'Will you be listed on Secondary Markets?',
     description: [
-      'You can choose one or both at the same time! If you’re only committing a small amount, we recommend the Basic Sale first. Just remember you need a PancakeSwap Profile in order to participate.',
+      'Squid NFT Game NFTs will be made available on major secondary exchanges after launch.',
+      'Note, 5% royalties will be charged on every secondary transaction, which will be accumulated to the Royalty Pool, funds in this pool will be distributed to participants in the game and NFT holders throughout the rounds.',
     ],
   },
   {
-    title: 'How much is the participation fee?',
-    description: [
-      'There’s only a participation fee for the Unlimited Sale: there’s no fee for the Basic Sale.',
-      'The fee will start at 1%.',
-      'The 1% participation fee decreases in cliffs, based on the percentage of overflow from the “Unlimited” portion of the sale.',
-    ],
+    title: 'What wallet should I use?',
+    description: ['Phantom is the recommended wallet.'],
   },
   {
-    title: 'Where does the participation fee go?',
-    description: [
-      'We burn it. The CAKE-BNB LP tokens from the participation fee will be decomposed. We will then use the BNB portion to market buy the CAKE equivalent, and finally throw all of the CAKE into the weekly token burn.',
-    ],
-  },
-  {
-    title: 'How can I get an achievement for participating in the IFO?',
-    description: [
-      'You need to contribute a minimum of about 10 USD worth of CAKE-BNB LP Tokens to either sale.',
-      'You can contribute to one or both, it doesn’t matter: only your overall contribution is counted for the achievement.',
-    ],
+    title: 'Why keep these NFTs after I am eliminated or when the game ends?',
+    description: ['😉'],
   },
 ]
 export default config

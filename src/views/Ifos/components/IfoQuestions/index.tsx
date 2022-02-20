@@ -32,14 +32,14 @@ const IfoQuestions = () => {
 
   return (
     <Flex alignItems={['center', null, null, 'start']} flexDirection={['column', null, null, 'row']}>
-      <ImageWrapper>
+      {/* <ImageWrapper>
         <img src="/images/ifos/ifo-bunny.png" alt="ifo bunny" width="414px" height="500px" />
-      </ImageWrapper>
+      </ImageWrapper> */}
       <DetailsWrapper>
         <Card>
           <CardHeader>
-            <Heading scale="lg" color="secondary">
-              {t('Details')}
+            <Heading scale="lg" color="failure">
+              {t('Frequently Asked Questions')}
             </Heading>
           </CardHeader>
           <CardBody>

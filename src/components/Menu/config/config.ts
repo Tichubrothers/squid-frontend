@@ -8,7 +8,7 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
   {
     label: t('Round 1'),
     icon: 'Swap',
-    href: '/swap',
+    href: '/#round1',
     showItemsOnMobile: false,
     items: [
       //   {
@@ -22,9 +22,16 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
     ],
   },
   {
+    label: t('Rules'),
+    href: '/#rules',
+    icon: 'Resources',
+    showItemsOnMobile: false,
+    items: [],
+  },
+  {
     label: t('Roadmap'),
-    href: '/farms',
-    icon: 'Earn',
+    href: '/#roadmap',
+    icon: 'Trophy',
     showItemsOnMobile: false,
     items: [
       // {
@@ -38,17 +45,17 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
     ],
   },
 
-  {
-    label: t('Rarity Ranking'),
-    href: '/farms',
-    icon: 'Earn',
-    showItemsOnMobile: false,
-    items: [],
-  },
+  // {
+  //   label: t('Rarity Ranking'),
+  //   href: '/rarityranking',
+  //   icon: 'Nft',
+  //   showItemsOnMobile: false,
+  //   items: [],
+  // },
   {
     label: t('FAQ'),
-    href: '/farms',
-    icon: 'Earn',
+    href: '/#faq',
+    icon: 'Info',
     showItemsOnMobile: false,
     items: [],
   },
