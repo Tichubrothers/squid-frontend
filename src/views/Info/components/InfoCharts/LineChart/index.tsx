@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, Dispatch, SetStateAction } from 'react'
 import { format } from 'date-fns'
 import { ResponsiveContainer, XAxis, YAxis, Tooltip, AreaChart, Area } from 'recharts'

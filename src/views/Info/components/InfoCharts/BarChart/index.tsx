@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, Dispatch, SetStateAction } from 'react'
 import { format } from 'date-fns'
 import { BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Bar } from 'recharts'

@@ -7,7 +7,7 @@ export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
     items: [
       {
         label:
-          'NFT based survival game in the Solana metaverse emulating the popular Netflix series. Follow the rules and survive all 6 rounds to claim the ultimate prize!',
+          'NFT based survival game in the Solana metaverse. Follow the rules and survive all 6 rounds to claim the ultimate prize!',
         isHighlighted: true,
       },
     ],

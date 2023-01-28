@@ -318,7 +318,7 @@ const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
           <CardBody>
             <Flex justifyContent="space-between" mb="8px">
               <Heading as="h4" color="secondary">
-                {t('ROUND 6 - Squid Game')}
+                {t('ROUND 6 - Squidy Game')}
               </Heading>
               {/* <Text marginLeft="5px" color="primary">
                 {t('In Progress')}

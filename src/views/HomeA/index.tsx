@@ -350,9 +350,7 @@ const HomeA = (props: HomeProps) => {
               {t('YOUR INVITATION AWAITS')}
             </Heading>
             <Heading scale="md" mb="24px">
-              {t(
-                'Welcome to Squid NFT Game, a Play-to-Earn NFT game in the Solana metaverse emulating the popular Netflix series.',
-              )}
+              {t('Welcome to Squid NFT Game, a Play-to-Earn NFT game in the Solana metaverse.')}
             </Heading>
             <Text mb="60px" color="gold">
               {t('Follow the rules and survive all 6 rounds to claim the ultimate prize of potentially 420 SOL!')}
